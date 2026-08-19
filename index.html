@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>从在场主义到价值主义 · 目录简报</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --shadow: 0 22px 50px rgba(20, 16, 12, .12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      overflow: hidden;
+      background: #111;
+    }
+    h1, h2, h3, .serif { font-family: "Noto Serif SC", "Songti SC", serif; }
+    h1 { font-size: clamp(40px, 5vw, 76px); line-height: 1.12; font-weight: 700; }
+    h2 { font-size: clamp(28px, 3.4vw, 52px); line-height: 1.18; font-weight: 700; max-width: 16em; }
+    .lead { font-size: clamp(17px, 1.55vw, 24px); line-height: 1.7; max-width: 42ch; color: var(--muted); }
+    .quote { font-family: "Noto Serif SC", serif; font-size: clamp(24px, 2.6vw, 38px); line-height: 1.45; max-width: 16em; }
+
+    .deck { position: relative; width: 100%; height: 100%; }
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 7vh 7.5vw 11vh;
+      color: var(--fg);
+      background: var(--bg);
+    }
+    .slide.active { display: flex; flex-direction: column; animation: rise .42s ease; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .kicker {
+      color: var(--accent);
+      letter-spacing: .22em;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .rule { width: 64px; height: 4px; background: var(--accent); margin: 22px 0; border: 0; }
+
+    .theme-cover {
+      --bg: #1b1410;
+      --fg: #fff6ea;
+      --muted: #d7c4ad;
+      --accent: #ff6b3d;
+      --card: #2a201a;
+      --line: rgba(255, 180, 140, .2);
+      background:
+        linear-gradient(115deg, #2c1812 0%, transparent 46%),
+        radial-gradient(900px 520px at 100% 0%, #ff7a3d33, transparent 50%),
+        #1b1410;
+    }
+    .theme-toc {
+      --bg: #f4efe6;
+      --fg: #1c1915;
+      --muted: #6d655b;
+      --accent: #c23b22;
+      --card: #fffdf8;
+      --line: rgba(28, 25, 21, .08);
+      background:
+        radial-gradient(800px 400px at 0% 100%, #f3d7a855, transparent 55%),
+        #f4efe6;
+    }
+    .theme-goal {
+      --bg: #e8f3ee;
+      --fg: #10241d;
+      --muted: #4c6b60;
+      --accent: #0b7a62;
+      --card: #ffffff;
+      --line: rgba(11, 122, 98, .12);
+      background:
+        radial-gradient(700px 420px at 100% 0%, #9ad7c440, transparent 50%),
+        #e8f3ee;
+    }
+    .theme-pain {
+      --bg: #2a1116;
+      --fg: #ffe8e2;
+      --muted: #e0b6ae;
+      --accent: #ff7a59;
+      --card: #3a1b21;
+      --line: rgba(255, 140, 110, .18);
+      background:
+        radial-gradient(800px 480px at 0% 0%, #ff5a3a22, transparent 50%),
+        #2a1116;
+    }
+    .theme-plan {
+      --bg: #e8eefc;
+      --fg: #141a2e;
+      --muted: #55607c;
+      --accent: #2450d6;
+      --card: #ffffff;
+      --line: rgba(36, 80, 214, .12);
+      background:
+        radial-gradient(720px 420px at 100% 100%, #7ea2ff33, transparent 50%),
+        #e8eefc;
+    }
+    .theme-base {
+      --bg: #101826;
+      --fg: #eaf0ff;
+      --muted: #9eafd0;
+      --accent: #6ee0d0;
+      --card: #182234;
+      --line: rgba(110, 224, 208, .16);
+      background:
+        radial-gradient(820px 460px at 100% 0%, #2d6bff22, transparent 52%),
+        #101826;
+    }
+    .theme-do {
+      --bg: #f7f1d8;
+      --fg: #231c08;
+      --muted: #6d6238;
+      --accent: #b8860b;
+      --card: #fffbeb;
+      --line: rgba(184, 134, 11, .16);
+      background:
+        radial-gradient(700px 400px at 0% 0%, #f0c14b33, transparent 50%),
+        #f7f1d8;
+    }
+    .theme-act {
+      --bg: #c23b22;
+      --fg: #fff7f2;
+      --muted: #ffd8cf;
+      --accent: #ffd166;
+      --card: #a8311c;
+      --line: rgba(255, 230, 210, .2);
+      background:
+        radial-gradient(900px 500px at 100% 0%, #ff8a5b55, transparent 50%),
+        #c23b22;
+    }
+
+    .grid { display: grid; gap: 18px; margin-top: 32px; }
+    .cols-2 { grid-template-columns: 1.05fr .95fr; }
+    .cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .toc-grid { grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; margin-top: 22px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px 20px;
+      min-height: 148px;
+      box-shadow: var(--shadow);
+    }
+    .card h3 { font-size: 20px; margin: 8px 0 8px; }
+    .card p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .idx { color: var(--accent); font-size: 12px; letter-spacing: .16em; font-weight: 700; }
+
+    .toc-card {
+      cursor: pointer;
+      position: relative;
+      z-index: 7;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 26px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .toc-card:hover { transform: translateY(-4px); }
+    .toc-card .num {
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(42px, 5vw, 64px);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .toc-card h3 { font-size: clamp(28px, 3vw, 40px); margin: 0 0 8px; }
+    .toc-c1 { background: #0b7a62; color: #e8fff6; --muted: #c6efe3; }
+    .toc-c2 { background: #c23b22; color: #fff4ef; --muted: #ffd4c8; }
+    .toc-c3 { background: #2450d6; color: #eef2ff; --muted: #c9d4ff; }
+    .toc-c4 { background: #b8860b; color: #fff8e4; --muted: #ffe7a8; }
+    .toc-card p { color: inherit; opacity: .86; font-size: 16px; }
+
+    .meta { margin-top: auto; display: flex; gap: 24px; color: var(--muted); font-size: 14px; }
+    .stat { font-family: "Noto Serif SC", serif; font-size: clamp(52px, 6vw, 84px); color: var(--accent); line-height: .9; }
+    .stat span { font-size: .42em; }
+
+    ul.clean { list-style: none; }
+    ul.clean li {
+      position: relative;
+      padding-left: 20px;
+      margin: 12px 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    ul.clean li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: .72em;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .rows { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 20px;
+    }
+    .row b { color: var(--accent); font-size: 28px; font-family: "Noto Serif SC", serif; }
+
+    .chapter {
+      justify-content: flex-end;
+      padding-bottom: 14vh;
