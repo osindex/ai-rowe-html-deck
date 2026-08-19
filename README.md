@@ -1,10 +1,17 @@
-# ai-rowe-html-deck
+# 从在场主义到价值主义
 
-在线预览即本仓库的 GitHub Pages / raw HTML。
+HTML 简报在线预览仓库。
 
-本仓库存放「从在场主义到价值主义」HTML 简报。访问本仓库的 GitHub Pages 站点，或直接打开 raw HTML，即可在线预览。
+## 现在就能打开
 
-- GitHub Pages：https://osindex.github.io/ai-rowe-html-deck/
-- htmlpreview：https://htmlpreview.github.io/?https://github.com/osindex/ai-rowe-html-deck/blob/main/index.html
-- raw HTML：https://raw.githubusercontent.com/osindex/ai-rowe-html-deck/main/index.html
-- jsDelivr：https://cdn.jsdelivr.net/gh/osindex/ai-rowe-html-deck@main/index.html
+**https://litter.catbox.moe/sg8k81.html**
+
+左右键翻页，下键看本页注释。
+
+## 固定地址（需要开一下 Pages）
+
+仓库 **Settings → Pages → Source** 选 **GitHub Actions**，然后访问：
+
+**https://osindex.github.io/ai-rowe-html-deck/**
+
+备用：[html-preview](https://html-preview.github.io/?url=https://github.com/osindex/ai-rowe-html-deck/blob/main/index.html)
