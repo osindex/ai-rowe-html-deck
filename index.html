@@ -905,4 +905,213 @@
       {
         title: "安全",
         chapter: "03 方案",
-        theme:
+        theme: "theme-base",
+        notes: "远程让网络边界消失。原则只有一句：从不信任，始终验证。MFA、最小权限、端点防护、DLP，加上AI SOC做7×24响应。没有这一层，结果导向会变成泄漏导向。",
+        html: `
+          <div class="kicker">03 · 方案 / 安全</div>
+          <h2>零信任：边界消失之后的底线</h2>
+          <div class="grid cols-4">
+            <div class="card"><div class="idx">01</div><h3>Zero Trust</h3><p>无论人在哪、设备是谁的，访问前一律验证。</p></div>
+            <div class="card"><div class="idx">02</div><h3>IAM + MFA</h3><p>多因素认证，按角色给最小权限。</p></div>
+            <div class="card"><div class="idx">03</div><h3>端点 / DLP</h3><p>公司设备与 BYOD 统一防护，堵住非授权外发。</p></div>
+            <div class="card"><div class="idx">04</div><h3>AI SOC</h3><p>全网行为 7×24 监控，异常自动响应。</p></div>
+          </div>`
+      },
+      {
+        title: "章节·实施",
+        chapter: "04 实施",
+        theme: "theme-do",
+        notes: "最后一块实施：怎么分阶段落地，谁做成过，坑在哪里，下周先做什么。",
+        html: `
+          <div class="chapter">
+            <div class="big">04</div>
+            <div class="kicker">Chapter · Action</div>
+            <h1>实施</h1>
+            <hr class="rule" />
+            <p class="lead">先试点，再推广，再变成公司操作系统。案例用来对照，风险用来避坑。</p>
+          </div>`
+      },
+      {
+        title: "五阶段路线",
+        chapter: "04 实施",
+        theme: "theme-do",
+        tight: true,
+        notes: "工作模式本身也要爬五级台阶，不能一步从打卡跳到纯信任。第一级手机控电脑，先具备远程能力，考勤还在。第二级申请远程，建立初步信任。第三级核心时间在线，剩下时间弹性。第四级纯结果导向，评价只看成果。第五级才是高信任、异步优先。管理逻辑同步升级：考勤、在线、协作、结果、信任。虚拟办公室始终是协作入口，不是监控工具。",
+        html: `
+          <div class="kicker">04 · 实施 / 五阶段</div>
+          <h2 style="max-width:none">从坐班管理，走到高信任远程</h2>
+          <div class="stages">
+            <div class="stage"><div class="n">01</div><h3>手机控电脑</h3><p>先测远程能力，保留考勤，把工作留下数字痕迹。</p></div>
+            <div class="stage"><div class="n">02</div><h3>申请远程</h3><p>申请制、虚拟作战室、建立第一层信任。</p></div>
+            <div class="stage"><div class="n">03</div><h3>核心时间在线</h3><p>核心时段保证协同，其余时间弹性安排。</p></div>
+            <div class="stage"><div class="n">04</div><h3>纯结果导向</h3><p>目标清晰、任务透明，评价只看交付与价值。</p></div>
+            <div class="stage"><div class="n">05</div><h3>信任管理</h3><p>高自治、异步优先，信任成为默认操作系统。</p></div>
+          </div>
+          <div class="logic">
+            <i>考勤管理</i><i>在线管理</i><i>协作管理</i><i>结果管理</i><i>信任管理</i>
+          </div>
+          <p style="margin-top:12px;color:var(--muted);font-size:13px">核心时间保证协同，非核心时间保证产出。最终只看交付质量与业务价值。</p>`
+      },
+      {
+        title: "路线图",
+        chapter: "04 实施",
+        theme: "theme-do",
+        notes: "三到六个月：CEO挂帅，选一两个团队试点，工具和绩效与团队共创。六到十二个月：复盘成避坑指南，管理者转训是一号工程。长期：坐班可选择，绩效每半年迭代，福祉成为健康指标。",
+        html: `
+          <div class="kicker">04 · 实施 / 路线图</div>
+          <h2>试点，再推广，再变成操作系统</h2>
+          <div class="timeline">
+            <div class="phase"><div class="idx">阶段一 · 3–6个月</div><h3 style="margin:10px 0">试点与准备</h3><p style="color:var(--muted)">领导小组 · 选 1–2 个团队 · 工具培训先行 · 共创绩效 · 政策反复讲清楚</p></div>
+            <div class="phase"><div class="idx">阶段二 · 6–12个月</div><h3 style="margin:10px 0">推广与迭代</h3><p style="color:var(--muted)">避坑指南 · 管理者大规模转训 · 虚拟 IT/HR 支持台 · 文化建设上场</p></div>
+            <div class="phase"><div class="idx">阶段三 · 长期</div><h3 style="margin:10px 0">深化与优化</h3><p style="color:var(--muted)">坐班可选择 · 绩效每半年迭代 · AI 更深应用 · 福祉成为健康指标</p></div>
+          </div>`
+      },
+      {
+        title: "案例",
+        chapter: "04 实施",
+        theme: "theme-do",
+        notes: "Remote是AI原生，管理者九成精力用于战略和辅导。制造企业用数字孪生加AR/VR做远程研发。Deel把一百五十多国合规做成秒级咨询，入职自动化约98%，全球大脑、本地手脚。",
+        html: `
+          <div class="kicker">04 · 实施 / 案例</div>
+          <h2>三种打法，同一方向</h2>
+          <div class="grid cols-3">
+            <div class="card"><div class="idx">Remote · AI 原生</div><h3>人均营收 +50%</h3><p>Labs 把自动化想法产品化。绩效看贡献与 360°，管理者 90% 时间做战略与辅导。</p></div>
+            <div class="card"><div class="idx">制造 · 混合现实</div><h3>数字孪生 + AR/VR</h3><p>虚拟空间协同设计；AI 当质量守门员。指标含模型贡献与虚拟协作效率。</p></div>
+            <div class="card"><div class="idx">Deel · 全球合规</div><h3>入职自动化 98%</h3><p>150+ 国家秒级法税咨询。总部定框架，区域团队高度自治。</p></div>
+          </div>`
+      },
+      {
+        title: "风险",
+        chapter: "04 实施",
+        theme: "theme-do",
+        notes: "四只拦路虎：数字鸿沟用设备和培训补；创新枯竭用头脑风暴和创新日补；中层不适把团队成长写进他们考核；分析滑向监控就必须透明、聚合、给员工知情权。",
+        html: `
+          <div class="kicker">04 · 实施 / 风险</div>
+          <h2>四只拦路虎，和对应打法</h2>
+          <div class="grid cols-2">
+            <div class="card"><div class="idx">公平</div><h3>数字鸿沟</h3><p>统一设备或高额居家补贴；分层 AI 培训；时区感知避免评价不公。</p></div>
+            <div class="card"><div class="idx">创新</div><h3>偶然碰撞消失</h3><p>虚拟头脑风暴、跨界分享、在线白板、创新日、外部会议回流。</p></div>
+            <div class="card"><div class="idx">权力</div><h3>中层失去控制感</h3><p>领导力转型当一号工程；考核加团队成长与自主性；提拔新榜样。</p></div>
+            <div class="card"><div class="idx">信任</div><h3>分析滑向监控</h3><p>数据政策极透明；聚合看趋势，不针对个人微观管理。</p></div>
+          </div>`
+      },
+      {
+        title: "行动",
+        chapter: "04 实施",
+        theme: "theme-act",
+        notes: "收束。工业时代核心是控制，数字时代是信任和赋能。立刻启动不是赶时髦，是为下一张门票。下周三件事：选定试点团队，冻结不再用打卡衡量，共创第一版成果指标。谢谢，欢迎提问。",
+        html: `
+          <div class="kicker">行动</div>
+          <p class="quote">立刻启动，不是为了应付现在，是为了拿到下一张门票。</p>
+          <hr class="rule" />
+          <p class="lead" style="color:var(--muted)">下周就可以做的三件事：选定试点团队；冻结「不再用打卡衡量」；与该团队共创第一版成果指标。</p>
+          <div class="meta">
+            <span>Q & A</span>
+            <span>讲述 12 分钟 · 问答 3 分钟</span>
+          </div>`
+      }
+    ];
+
+    const deck = document.getElementById("deck");
+    const notesEl = document.getElementById("notes");
+    const notesBody = document.getElementById("notesBody");
+    const helpEl = document.getElementById("help");
+    const overviewEl = document.getElementById("overview");
+    const counter = document.getElementById("counter");
+    const bar = document.getElementById("bar");
+    const footLeft = document.getElementById("footLeft");
+    let i = 0;
+
+    const themeBar = {
+      "theme-cover": "#ff6b3d",
+      "theme-toc": "#c23b22",
+      "theme-goal": "#0b7a62",
+      "theme-pain": "#ff7a59",
+      "theme-plan": "#2450d6",
+      "theme-base": "#6ee0d0",
+      "theme-do": "#b8860b",
+      "theme-act": "#ffd166"
+    };
+
+    function render() {
+      deck.innerHTML = slides.map((s, idx) =>
+        `<section class="slide ${s.theme}${s.tight ? " tight" : ""}${idx === i ? " active" : ""}" data-i="${idx}">${s.html}</section>`
+      ).join("");
+      counter.textContent = `${i + 1} / ${slides.length}`;
+      bar.style.width = `${((i + 1) / slides.length) * 100}%`;
+      bar.style.background = themeBar[slides[i].theme] || "#c23b22";
+      notesBody.textContent = slides[i].notes;
+      footLeft.textContent = slides[i].chapter;
+      document.body.dataset.theme = slides[i].theme;
+      document.querySelector(".footer-ui").style.color = getComputedStyle(deck.querySelector(".slide.active")).getPropertyValue("--muted");
+      location.hash = String(i + 1);
+      overviewEl.innerHTML = slides.map((s, idx) =>
+        `<div class="thumb${idx === i ? " current" : ""}" data-jump="${idx}"><b>${s.chapter}</b><span>${s.title}</span></div>`
+      ).join("");
+    }
+
+    function go(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      render();
+    }
+
+    document.getElementById("prevHit").onclick = () => go(i - 1);
+    document.getElementById("nextHit").onclick = () => go(i + 1);
+    document.addEventListener("click", (e) => {
+      const t = e.target.closest("[data-jump]");
+      if (!t) return;
+      overviewEl.classList.remove("show");
+      go(Number(t.dataset.jump));
+    });
+
+    function showNotes() { notesEl.classList.add("show"); }
+    function hideNotes() { notesEl.classList.remove("show"); }
+
+    window.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "PageDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); go(i + 1); }
+      if (["ArrowLeft", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); go(i - 1); }
+      if (e.key === "ArrowDown") { e.preventDefault(); showNotes(); }
+      if (e.key === "ArrowUp") { e.preventDefault(); hideNotes(); }
+      if (e.key === "Home") go(0);
+      if (e.key === "End") go(slides.length - 1);
+      if (e.key === "n" || e.key === "N") notesEl.classList.toggle("show");
+      if (e.key === "?" || e.key === "h" || e.key === "H") helpEl.classList.toggle("show");
+      if (e.key === "o" || e.key === "O") overviewEl.classList.toggle("show");
+      if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+      }
+      if (e.key === "Escape") {
+        hideNotes();
+        helpEl.classList.remove("show");
+        overviewEl.classList.remove("show");
+      }
+    });
+
+    let touchX = null;
+    let touchY = null;
+    window.addEventListener("touchstart", (e) => {
+      touchX = e.changedTouches[0].screenX;
+      touchY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    window.addEventListener("touchend", (e) => {
+      if (touchX == null || touchY == null) return;
+      const dx = e.changedTouches[0].screenX - touchX;
+      const dy = e.changedTouches[0].screenY - touchY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        if (dx < 0) go(i + 1);
+        else go(i - 1);
+      } else if (Math.abs(dy) > 40) {
+        if (dy < 0) showNotes();
+        else hideNotes();
+      }
+      touchX = null;
+      touchY = null;
+    }, { passive: true });
+
+    const fromHash = Number(location.hash.replace("#", ""));
+    if (fromHash >= 1 && fromHash <= slides.length) i = fromHash - 1;
+    render();
+  </script>
+</body>
+</html>
