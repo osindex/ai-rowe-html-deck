@@ -1,0 +1,33 @@
+name: Assemble index.html
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'chunks/**'
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble index.html from exact source chunks
+        run: |
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+          parts = sorted(Path('chunks').glob('part-*.b64'))
+          data = b''.join(base64.b64decode(p.read_text()) for p in parts)
+          Path('index.html').write_bytes(data)
+          print('wrote', len(data), 'bytes from', len(parts), 'chunks')
+          PY
+      - name: Commit assembled deck
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Add HTML briefing for online preview"
+          git push
