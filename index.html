@@ -448,4 +448,285 @@
       padding: 0 7.5vw; font-size: 12px; letter-spacing: .08em;
       color: var(--foot, #8a8378); pointer-events: none;
     }
-    .footer-u
+    .footer-ui .hint { opacity: .75; }
+    .progress { position: fixed; left: 0; right: 0; top: 0; height: 4px; background: rgba(0,0,0,.08); z-index: 6; }
+    .progress span { display: block; height: 100%; width: 0; background: #c23b22; }
+    .hit { position: fixed; top: 0; bottom: 48px; width: 4.5vw; z-index: 4; cursor: pointer; }
+    .hit.left { left: 0; } .hit.right { right: 0; }
+
+    .notes {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      max-height: 42vh;
+      overflow: auto;
+      background: rgba(16, 14, 12, .94);
+      color: #fff6ea;
+      border-radius: 20px 20px 0 0;
+      padding: 16px 7.5vw 64px;
+      z-index: 8;
+      transform: translateY(110%);
+      transition: transform .28s ease;
+      box-shadow: 0 -16px 40px rgba(0,0,0,.28);
+    }
+    .notes.show { transform: translateY(0); }
+    .notes-handle {
+      width: 48px; height: 4px; border-radius: 99px;
+      background: #6b6256; margin: 0 auto 12px;
+    }
+    .notes h4 { color: #ffd166; font-size: 12px; letter-spacing: .16em; margin-bottom: 8px; }
+    .notes p { color: #ead9c6; font-size: 16px; line-height: 1.75; max-width: 70ch; }
+
+    .help, .overview {
+      position: fixed; inset: auto 7vw 64px auto;
+      width: min(560px, 42vw); max-height: 42vh; overflow: auto;
+      background: rgba(20, 16, 12, .92); color: #fff6ea;
+      border-radius: 16px; padding: 18px 20px; z-index: 8; display: none;
+    }
+    .help.show { display: block; }
+    .help h4 { color: #ffd166; font-size: 12px; letter-spacing: .16em; margin-bottom: 8px; }
+    .help p { color: #ead9c6; font-size: 14px; line-height: 1.7; }
+    .help kbd {
+      display: inline-block; min-width: 28px; text-align: center;
+      border: 1px solid #5a5046; border-radius: 6px; padding: 1px 6px; margin-right: 8px; color: #ffd166;
+    }
+    .overview {
+      inset: 6vh 6vw; width: auto; max-height: none; display: none;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; padding: 22px;
+    }
+    .overview.show { display: grid; }
+    .thumb { border: 1px solid #4a433a; border-radius: 12px; padding: 14px; min-height: 100px; cursor: pointer; }
+    .thumb.current { border-color: #ffd166; }
+    .thumb b { display: block; font-size: 11px; color: #ffd166; margin-bottom: 6px; }
+    .thumb span { font-size: 14px; }
+
+    @media (max-width: 900px) {
+      .cols-2, .cols-3, .cols-4, .toc-grid, .timeline, .row { grid-template-columns: 1fr; }
+      .slide { padding: 8vh 6vw 12vh; }
+      h2 { max-width: none; }
+      .help { left: 5vw; right: 5vw; width: auto; }
+      .chapter .big { font-size: 90px; }
+    }
+    @media print {
+      body { overflow: auto; }
+      .slide { position: relative; display: flex !important; page-break-after: always; height: 100vh; animation: none; }
+      .footer-ui, .hit, .progress, .notes, .help, .overview { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress"><span id="bar"></span></div>
+  <div class="deck" id="deck"></div>
+  <div class="hit left" id="prevHit"></div>
+  <div class="hit right" id="nextHit"></div>
+  <div class="footer-ui">
+    <span id="footLeft">目录 · 目标 / 痛点 / 方案 / 实施</span>
+    <span class="hint">← → 翻页　↓ ↑ 注释</span>
+    <span id="counter">1 / 22</span>
+  </div>
+  <aside class="notes" id="notes">
+    <div class="notes-handle"></div>
+    <h4>本页注释 · ↓ 打开　↑ 收起</h4>
+    <p id="notesBody"></p>
+  </aside>
+  <aside class="help" id="help">
+    <h4>快捷键</h4>
+    <p><kbd>→</kbd>下一页　<kbd>←</kbd>上一页</p>
+    <p><kbd>↓</kbd>显示注释　<kbd>↑</kbd>收起注释</p>
+    <p><kbd>O</kbd>总览　<kbd>F</kbd>全屏　<kbd>?</kbd>本说明</p>
+    <p>左右滑动翻页，上下滑动开关注释</p>
+  </aside>
+  <aside class="overview" id="overview"></aside>
+
+  <script>
+    const slides = [
+      {
+        title: "封面",
+        chapter: "封面",
+        theme: "theme-cover",
+        notes: "各位好。今天按四个大目录讲：目标、痛点、方案、实施。核心一句话——从全员坐班打卡，转向结果导向的远程工作，不是换办公地点，而是从在场主义转向价值主义。",
+        html: `
+          <div class="kicker">12 min · Briefing</div>
+          <h1>从「在场主义」<br>到「价值主义」</h1>
+          <hr class="rule" />
+          <p class="lead">AI 浪潮下的组织变革：废除坐班打卡，建成以结果为导向的远程工作体系。</p>
+          <div class="chips">
+            <span class="chip">01 目标</span><span class="chip">02 痛点</span>
+            <span class="chip">03 方案</span><span class="chip">04 实施</span>
+          </div>
+          <div class="meta">
+            <span>2026年8月18日</span>
+            <span>CEO / CHRO / 业务负责人</span>
+          </div>`
+      },
+      {
+        title: "目录",
+        chapter: "目录",
+        theme: "theme-toc",
+        notes: "目录就四块。目标：我们要建成什么样的组织。痛点：旧模式为什么量不出价值。方案：领导力、组织、绩效、文化和技术怎么改。实施：试点路径、别人怎么做、坑怎么躲。点卡片可以直接跳到对应章节。",
+        html: `
+          <div class="kicker">Contents</div>
+          <h2>今天只讲四件事</h2>
+          <div class="grid toc-grid">
+            <article class="card toc-card toc-c1" data-jump="2">
+              <div>
+                <div class="num">01</div>
+                <h3>目标</h3>
+              </div>
+              <p>建成价值主义组织：信任、结果、远程可运转。</p>
+            </article>
+            <article class="card toc-card toc-c2" data-jump="4">
+              <div>
+                <div class="num">02</div>
+                <h3>痛点</h3>
+              </div>
+              <p>工时 ≠ 产出。打卡惩罚深度工作，留不住高价值人才。</p>
+            </article>
+            <article class="card toc-card toc-c3" data-jump="8">
+              <div>
+                <div class="num">03</div>
+                <h3>方案</h3>
+              </div>
+              <p>领导力、组织、OKR+KPI+HCI、文化，加上数字底座。</p>
+            </article>
+            <article class="card toc-card toc-c4" data-jump="19">
+              <div>
+                <div class="num">04</div>
+                <h3>实施</h3>
+              </div>
+              <p>五阶段路径、试点推广、案例与风险。</p>
+            </article>
+          </div>`
+      },
+      {
+        title: "章节·目标",
+        chapter: "01 目标",
+        theme: "theme-goal",
+        notes: "先把终点钉死。我们要的不是居家办公福利，而是一套能衡量价值、能跨时区协作、能留下创造者的组织操作系统。",
+        html: `
+          <div class="chapter">
+            <div class="big">01</div>
+            <div class="kicker">Chapter · Goal</div>
+            <h1>目标</h1>
+            <hr class="rule" />
+            <p class="lead">从全员坐班打卡，转向结果导向的远程工作环境（ROWE）。坐班变成可选项，价值变成唯一账本。</p>
+          </div>`
+      },
+      {
+        title: "目标定义",
+        chapter: "01 目标",
+        theme: "theme-goal",
+        notes: "请把这句话带走：这场转型不是办公地点变更，而是管理哲学、组织、绩效、技术与文化一起改。旧等式是工时等于产出，新等式是价值等于产出。结果可衡量之后，打卡机就失去合法性。",
+        html: `
+          <div class="kicker">01 · 目标</div>
+          <p class="quote">不是换办公地点，而是从控制范式，转向信任与赋能。</p>
+          <div class="grid cols-3">
+            <div class="card"><div class="idx">终点</div><h3>价值主义 ROWE</h3><p>用成果、影响力和成长衡量人，而不是工位和工时。</p></div>
+            <div class="card"><div class="idx">新等式</div><h3>价值 = 产出</h3><p>AI 把重复劳动压到接近零成本，人类贡献转向判断与创造。</p></div>
+            <div class="card"><div class="idx">管理含义</div><h3>信任 > 监控</h3><p>管理者设定目标、清障碍、做教练。打卡不再证明投入。</p></div>
+          </div>`
+      },
+      {
+        title: "章节·痛点",
+        chapter: "02 痛点",
+        theme: "theme-pain",
+        notes: "第二块是痛点。工业时代把泰勒制搬进办公室，留下三个过期假设。AI 把它们抽空了。",
+        html: `
+          <div class="chapter">
+            <div class="big">02</div>
+            <div class="kicker">Chapter · Pain</div>
+            <h1>痛点</h1>
+            <hr class="rule" />
+            <p class="lead">在场主义量不出真正的价值，还会扼杀自主性，让最能创造价值的人先走。</p>
+          </div>`
+      },
+      {
+        title: "过期假设",
+        chapter: "02 痛点",
+        theme: "theme-pain",
+        notes: "三个隐性假设：人在就是在干活；管得住过程就预测得了结果；同步共处最高效。办公室八点半的灯，不再等于公司在创造价值。",
+        html: `
+          <div class="kicker">02 · 痛点</div>
+          <h2>「在场主义」的三个过期假设</h2>
+          <div class="rows">
+            <div class="row"><b>A</b><div><h3>物理在场 = 投入</h3><p class="lead" style="max-width:none;margin:0">坐满八小时被记作有效工时。屏幕亮着，不等于问题被解开。</p></div></div>
+            <div class="row"><b>B</b><div><h3>过程可控 = 结果可预测</h3><p class="lead" style="max-width:none;margin:0">管理者的主业变成监工。过程合规，结果仍可能空洞。</p></div></div>
+            <div class="row"><b>C</b><div><h3>同步共处最高效</h3><p class="lead" style="max-width:none;margin:0">同一时间同一地点被神化。跨时区和深度工作被牺牲。</p></div></div>
+          </div>`
+      },
+      {
+        title: "工时脱钩",
+        chapter: "02 痛点",
+        theme: "theme-pain",
+        notes: "2026年的证据：工程师从代码工人变成AI架构师和审计师。Remote大约85%代码由AI生成，员工规模没显著膨胀，人均营收却增长约50%。人的价值与物理在场，已经脱钩。",
+        html: `
+          <div class="kicker">02 · 痛点</div>
+          <h2>AI 拆掉了「工时 = 产出」</h2>
+          <div class="grid cols-2">
+            <div>
+              <div class="stat">85<span>%</span></div>
+              <p class="muted" style="margin:10px 0 28px;color:var(--muted)">代码由 AI 生成 · Remote</p>
+              <div class="stat">+50<span>%</span></div>
+              <p style="margin-top:10px;color:var(--muted)">人均营收增长 · 编制未显著增加</p>
+            </div>
+            <ul class="clean">
+              <li>工程师：分钟级生成昔日数天的框架，角色转向架构与审计。</li>
+              <li>分析师：价值从整理表格，变成提出正确问题。</li>
+              <li>协作平台：翻译、摘要、行动项、跨时区调度，异步成为默认。</li>
+            </ul>
+          </div>
+          <div class="eq">
+            <div class="box">工时 = 产出</div>
+            <div class="x">✕</div>
+            <div class="box">价值 = 产出</div>
+          </div>`
+      },
+      {
+        title: "价值错位",
+        chapter: "02 痛点",
+        theme: "theme-pain",
+        notes: "重复工作被自动化后，人类被推到创造、战略和情感智慧上。一次散步里的灵感可能值一百万，打卡机记录不到。继续固守坐班，就是在惩罚深度工作。",
+        html: `
+          <div class="kicker">02 · 痛点</div>
+          <h2>能被打卡的，往往不是价值</h2>
+          <div class="grid cols-3">
+            <div class="card"><div class="idx">被 AI 接管</div><h3>重复 / 流程 / 整理</h3><p>草稿、脚手架、检索、纪要、基础分析，成本趋向于零。</p></div>
+            <div class="card"><div class="idx">留给人</div><h3>判断 / 创造 / 关系</h3><p>提问、取舍、审美、责任、对齐、对客户的共情。</p></div>
+            <div class="card"><div class="idx">管理后果</div><h3>打卡开始伤害组织</h3><p>僵化制度让高价值人才最先离开。</p></div>
+          </div>`
+      },
+      {
+        title: "章节·方案",
+        chapter: "03 方案",
+        theme: "theme-plan",
+        notes: "第三块是方案。四条线一起改：领导力、组织、绩效、文化；后面再补技术和安全底座。",
+        html: `
+          <div class="chapter">
+            <div class="big">03</div>
+            <div class="kicker">Chapter · Solution</div>
+            <h1>方案</h1>
+            <hr class="rule" />
+            <p class="lead">赋能型领导、网状组织、OKR+KPI+HCI、书面与信任文化，再用数字办公室和零信任托住。</p>
+          </div>`
+      },
+      {
+        title: "三层管理图",
+        chapter: "03 方案",
+        theme: "theme-plan",
+        tight: true,
+        notes: "先看这张总图。管理从盯人，改成三层：目标层回答要完成什么、为什么重要；过程层回答做到哪里、有没有阻塞；结果层回答做成了没有、质量如何、产生了什么价值。复盘再回到目标。底下那条逻辑是考勤驱动，变成过程驱动，再变成结果驱动。好的结果不来自持续盯人，而来自清晰目标、透明过程、有效复盘。",
+        html: `
+          <div class="kicker">03 · 方案 / 总图</div>
+          <h2 style="max-width:none">目标 / 过程 / 结果 三层管理体系</h2>
+          <p class="lead" style="margin-top:8px">从盯人管理，转向目标牵引、过程透明、结果评价。</p>
+          <div class="layers">
+            <div>
+              <div class="layer ly-goal">
+                <div class="mark">01</div>
+                <div>
+                  <h3>目标层</h3>
+                  <p>回答：要完成什么、为什么重要。</p>
+                  <div class="tags"><span>方向清晰</span><span>目标对齐</span><span>优先级明确</span></div>
+                </div>
+              </div>
+              <div class="layer ly-proc">
+                
